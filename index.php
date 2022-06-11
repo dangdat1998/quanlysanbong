@@ -1,8 +1,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>QUẢN LÝ SÂN BÓNG 1.0</title>
+<title>Đặt sân</title>
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/index.css" />
+<link rel="stylesheet" type="text/css" href="css/trangchu.css" />
 <body>
 	<?php
 		include("session.php");
@@ -18,42 +19,56 @@
 		<!-- <div class="ngaydatsan"><b>NGÀY: </b><input type="text" id="datepicker"/></div><br/> -->
 		<br />
 		<div class="datsan-block">
-			<div class="title-list"><b>TÌNH TRẠNG ĐẶT SÂN </div><div class="ngay-list"> NGÀY <span id='tieudetime'></span></b></div><br />
+			<div class="title"><p>TÌNH TRẠNG ĐẶT SÂN</p></div>
+			<div class="ngay-list"><b> NGÀY <span id='tieudetime'></span></b></div><br />
 			<div class="time-table-block">
 				<div class="container" id="time_table"></div> <br />
 			</div>
 		</div>
 		<br/>
-
-		<div class="datsan-block">
-			<div class="title-list"><b>DANH SÁCH ĐẶT SÂN </div> <div class="ngay-list">NGÀY <span id='tieudeds'></span></b></div><br />
-			<div class="list-table-block">
-				<div class="container" id='ds_datsan'></div><br />
+		<?php 
+			if ($rs['chucvu'] == 1) {
+				echo '<div class="datsan-block">
+				<div class="title"><p>DANH SÁCH ĐẶT SÂN</p></div>
+				<b><div class="ngay-list">NGÀY <span id="tieudeds"></span></b></div><br />
+				<div class="list-table-block">
+					<div class="container" id="ds_datsan"></div><br />
+				</div>
 			</div>
-		<div>
-		<br />
+			<br />';
+			}
+		?>
+		<?php 
+			if ($rs['chucvu'] == 0) {
+				echo '<div class="datsan-block">
+					<div class="title"><p>SÂN ĐÃ ĐẶT THEO NGÀY</p></div> <b><div class="ngay-list">NGÀY <span style="color:red;" id="tieudeds_khach"></span></b></div><br />
+						<div class="list-table-block">
+							<div class="container" id="ds_datsan_khach"></div><br />
+						
+						</div>
+					</div>
+			<br />';
+			}
+		?>
+
+		
 		
 		<style>
-			#formDatSan {
-				position:absolute;margin:auto;top:0;right:0;bottom:0;left:0;width:450px;height:450px;z-index:100;background:#eee;padding:15px;border:0px solid #000;box-shadow:5px 5px 20px #000;display:none;border-radius:10px;
-			}
-			#formDatSan td{vertical-align:center;padding-top:5px;}
-
-			#grayscreen{width:100%;height:100%;background:#333;opacity:0.7;z-index:99;display:none;position:absolute;left:0;top:0;}
-			#datsan_themkhach{display:block;}
+			
 		</style>
 		<?php
 		$sql = "SELECT * FROM tai_khoan WHERE username = '".$_SESSION['login_user']."'";
-			$rs = mysqli_fetch_assoc(mysqli_query($db, $sql));
+		$rs = mysqli_fetch_assoc(mysqli_query($db, $sql));
+			
 		?>
 		<div id='grayscreen'></div>
 		<div id='formDatSan'>
-			<b style='font-size: 18px;'>ĐẶT SÂN</b><br />
+		<div class="title"><p>ĐẶT SÂN</p></div>
 			<br />
 			<table>
 				<tr>
 					<td>Sân:</td>
-					<td><span id='datsan_tensan' style='font-weight:bold;color:red;'></span></td>
+					<td><span id='datsan_tensan' style='font-weight:bold;'></span></td>
 				</tr>
 				<tr class="display-none">
 					<td>ID:</td>
@@ -138,8 +153,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Tổng thời gian (phút):</td>
-					<td><span id='datsan_phut'></span></td>
+					<td>Tổng thời gian:</td>
+					<td><span id='datsan_phut'></span> phút</td>
 				</tr>
 				<tr>
 					<td>Đơn giá (/phút):</td>
@@ -148,29 +163,34 @@
 				<tr>
 					<td>Tổng tiền:</td>
 					<td><span id='datsan_tongtien' style='color:red;font-weight:bold;'>0đ</span></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><br />
-						<button id='datsan_ok'>Đồng ý</button>
-						<button id='datsan_cancel'>Hủy</button>
-					</td>
-				</tr>
+				</tr>	
 			</table>
+			<div class="btn-formdatsan">
+				<button type="button" class="btn btn-primary" id='datsan_ok'>Đồng ý</button>
+				<button type="button" class="btn btn-danger" id='datsan_cancel'>Hủy</button>
+			</div>
 		</div>
-</div>
-<div class="datsan-block">
-	<div class="title-list"><b>SƠ ĐỒ SÂN BÓNG</b></div><br />
-
-	<div id="viewsanbong"></div>
-</div>
+	<?php 
+		if ($rs['chucvu'] == 1) {
+			echo '<div class="datsan-block">
+			<div class="title"><p>SƠ ĐỒ SÂN BÓNG</p></div><br />
+				<div id="viewsanbong"></div>
+			</div>';
+	}
+	?>
+	</div>
+<?php
+		include("footer.php");
+?>
 </body>
+
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <script>
 $(document).ready(function() {
 	
 	xemDsDatSan(getToday());
+	xemDsDatSanKhach(getToday());
 
 	$("#datsan_batdau_gio").on("input", function(){
         // Print entered value in a div box
@@ -210,6 +230,7 @@ $(document).ready(function() {
 		maxYear: parseInt(moment().format('YYYY'), 10)
 	}, function(start, end, label) {
 		xemDsDatSan(start.format("YYYY-MM-DD"));
+		xemDsDatSanKhach(start.format("YYYY-MM-DD"));
 	});
 	
 	
@@ -264,53 +285,12 @@ $(document).ready(function() {
 					thongbaotot(msg);
 				}
 				xemDsDatSan(getCurrentFormattedDate());
+				xemDsDatSanKhach(getCurrentFormattedDate());
 			},
 			error: function() {
 				thongbaoloi("Lỗi hệ thống!!");
 			}
 		});
 	}
-	
-
-	// $("#datsan_btnthemkh").click(function() {
-	// 	var ten = $("#datsan_them_ten").val();
-	// 	var sdt = $("#datsan_them_sdt").val();
-	// 	if (kiemtraten(ten) && kiemtrasdt(sdt)) {
-	// 		themKhachHang(ten, sdt);
-	// 	}
-	// });
-	
-	// $("#chbThemKhach").change(function() {
-	// 	if($(this).is(":checked")) {
-	// 		$("#datsan_themkhach").removeClass("disabled");
-	// 	} else {
-	// 		$("#datsan_themkhach").addClass("disabled");
-	// 	}
-	// });
-	
-// 	function themKhachHang(ten, sdt) {
-// 	$.ajax({
-// 		url: "/quanlysanbong/api/dskhachhang.php",
-// 		type: "POST",
-// 		cache: false,
-// 		data: {
-// 			action: "add",
-// 			ten : ten,
-// 			sdt : sdt
-// 		},
-// 		success: function(msg) {
-// 			if (msg.includes("đã tồn tại")) {
-// 				thongbaoloi(msg);
-// 			} else {
-// 				$("#datsan_them_ten").val("");
-// 				$("#datsan_them_sdt").val("");
-// 				getDsKhachHang();
-// 			}
-// 		},
-// 		error: function() {
-// 			alert("Khong the them khach hang moi!!!");
-// 		}
-// 	});
-// }
 });
 </script>

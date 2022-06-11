@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2022 at 01:56 PM
+-- Generation Time: Jun 08, 2022 at 10:21 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -43,11 +43,53 @@ CREATE TABLE `dat_san` (
 --
 
 INSERT INTO `dat_san` (`id`, `ma_kh`, `ma_san`, `bat_dau`, `ket_thuc`, `da_thanh_toan`, `don_gia`) VALUES
-(253, 6, 21, '2022-05-23 05:00:00', '2022-05-23 06:45:00', 0, 3000),
+(253, 6, 21, '2022-05-23 05:00:00', '2022-05-23 06:45:00', 1, 3000),
 (254, 3, 22, '2022-05-24 07:00:00', '2022-05-24 09:00:00', 1, 3000),
-(255, 3, 21, '2022-05-24 10:00:00', '2022-05-24 12:00:00', 0, 3000),
-(256, 3, 21, '2022-05-24 12:15:00', '2022-05-24 14:00:00', 0, 3000),
-(257, 3, 24, '2022-05-24 20:00:00', '2022-05-24 22:30:00', 0, 8000);
+(255, 3, 21, '2022-05-24 10:00:00', '2022-05-24 12:00:00', 1, 3000),
+(256, 3, 21, '2022-05-24 12:15:00', '2022-05-24 14:00:00', 1, 3000),
+(257, 3, 24, '2022-05-24 20:00:00', '2022-05-24 22:30:00', 1, 8000),
+(260, 4, 20, '2022-06-02 05:00:00', '2022-06-02 05:15:00', 1, 3000),
+(261, 4, 20, '2022-06-02 05:30:00', '2022-06-02 05:45:00', 1, 3000),
+(262, 1, 20, '2022-06-02 06:00:00', '2022-06-02 06:15:00', 1, 3000),
+(263, 3, 20, '2022-06-03 05:00:00', '2022-06-03 12:15:00', 1, 3000),
+(273, 3, 27, '2022-06-03 08:00:00', '2022-06-03 09:30:00', 1, 3000),
+(275, 6, 22, '2022-06-03 09:00:00', '2022-06-03 16:15:00', 1, 3000),
+(277, 3, 20, '2022-06-03 19:00:00', '2022-06-03 19:15:00', 1, 8000),
+(278, 3, 21, '2022-06-03 07:00:00', '2022-06-03 10:15:00', 1, 3000),
+(279, 3, 23, '2022-06-03 09:00:00', '2022-06-03 09:15:00', 1, 3000),
+(280, 3, 28, '2022-06-03 05:00:00', '2022-06-03 11:15:00', 0, 3000),
+(281, 6, 21, '2022-06-04 20:00:00', '2022-06-04 21:45:00', 1, 8000),
+(282, 6, 28, '2022-06-04 10:00:00', '2022-06-04 12:00:00', 1, 3000),
+(283, 7, 23, '2022-06-04 20:00:00', '2022-06-04 22:00:00', 0, 8000),
+(295, 3, 24, '2022-06-04 06:00:00', '2022-06-04 12:30:00', 0, 3000),
+(296, 3, 22, '2022-06-04 05:00:00', '2022-06-04 05:30:00', 0, 3000),
+(297, 3, 20, '2022-06-04 05:00:00', '2022-06-04 19:15:00', 1, 3000),
+(302, 3, 22, '2022-06-04 09:00:00', '2022-06-04 22:15:00', 0, 3000),
+(303, 3, 22, '2022-06-07 05:00:00', '2022-06-07 18:15:00', 0, 3000),
+(304, 3, 24, '2022-06-07 07:00:00', '2022-06-07 15:15:00', 0, 3000),
+(305, 3, 20, '2022-06-07 07:00:00', '2022-06-07 15:15:00', 0, 3000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post`
+--
+
+CREATE TABLE `post` (
+  `id` int(11) NOT NULL,
+  `username` varchar(225) CHARACTER SET utf8 NOT NULL,
+  `title` text NOT NULL,
+  `content` longtext CHARACTER SET utf8 NOT NULL,
+  `time` varchar(255) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`id`, `username`, `title`, `content`, `time`) VALUES
+(16, 'dangdat', 'Lịch nghỉ lễ', 'Sân sẽ nghỉ vào thứ 3 tuần này (7/6/1998)\n', '1654323846'),
+(17, 'dangdat', 'Lịch mở cửa', 'Sân sẽ mở cửa vào lúc 8h sáng\n', '1654323870');
 
 -- --------------------------------------------------------
 
@@ -65,14 +107,14 @@ CREATE TABLE `san_bong` (
 --
 
 INSERT INTO `san_bong` (`id`, `ten`) VALUES
-(20, 'San A'),
-(21, 'San B'),
-(22, 'San C'),
-(23, 'San D'),
-(24, 'San E'),
-(26, 'San F'),
-(27, 'San G'),
-(28, 'San H');
+(20, 'Sân 1'),
+(21, 'Sân 2'),
+(22, 'Sân 3'),
+(23, 'Sân 4'),
+(24, 'Sân 5'),
+(26, 'Sân 6'),
+(27, 'Sân 7'),
+(28, 'Sân 8');
 
 -- --------------------------------------------------------
 
@@ -100,7 +142,8 @@ INSERT INTO `tai_khoan` (`id`, `ten`, `sdt`, `username`, `password`, `chucvu`, `
 (4, 'Minh Tuấn', '0199292000', 'duc', '123456', '0', '1653311761'),
 (5, 'Hoàng Minh Đức', '0199292020', 'duc1', '123456', '0', '1653311821'),
 (6, 'Nguyễn Tiến Anh', '01655938742', 'tienanh', '123456', '0', '1653324835'),
-(7, 'Trần Trung Hiếu', '0355000009', 'trunghieu', '123456', '0', '1653326723');
+(7, 'Trần Trung Hiếu', '0355000009', 'trunghieu', '123456', '0', '1653326723'),
+(9, 'quynh', '0101910', 'quynh1909', '123456', '0', '1654102714');
 
 --
 -- Indexes for dumped tables
@@ -113,6 +156,12 @@ ALTER TABLE `dat_san`
   ADD PRIMARY KEY (`id`),
   ADD KEY `dat_san_ibfk_1` (`ma_kh`),
   ADD KEY `dat_san_ibfk_2` (`ma_san`);
+
+--
+-- Indexes for table `post`
+--
+ALTER TABLE `post`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `san_bong`
@@ -134,7 +183,13 @@ ALTER TABLE `tai_khoan`
 -- AUTO_INCREMENT for table `dat_san`
 --
 ALTER TABLE `dat_san`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=306;
+
+--
+-- AUTO_INCREMENT for table `post`
+--
+ALTER TABLE `post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `san_bong`
@@ -146,7 +201,7 @@ ALTER TABLE `san_bong`
 -- AUTO_INCREMENT for table `tai_khoan`
 --
 ALTER TABLE `tai_khoan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables

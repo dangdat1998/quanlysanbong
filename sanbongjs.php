@@ -1,4 +1,4 @@
-<title>Sân Bóng</title>
+
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -19,31 +19,21 @@ $(document).ready(function() {
 			var html1 = "";
 			var data = $.parseJSON(json);
 
-			html1 += "<div>"
+			html += "<div class='list-san'>"
 			for (var i = 0; i < data.length; i++) {
-			html1 += "<div class='list-datsan'>"
-			html1 += '<img class="image-list-sb" src="images/sanbong-icon.png">'
-			html1 += '<div class="list-sb-item">'+ data[i].ten_san +'</div>'
-			html1 += "<div class='btn-san'>"
-			html1 += "<button class='btnXoa' ma_san='" + data[i].ma_san + "' order='" + (i + 1) + "'>Xóa</button></div>"
-			html1 += "</div>"
-		}	
-
-			html += "<table class='mytable'>";
-			html += "<thead><tr><th>#</th><th>Tên sân bóng</th><th>Đổi tên</th><th>Xóa</th></tr></thead>";
-			for (var i = 0; i < data.length; i++) {
-				html += "<tr>";
-				html += "<td>" + (i + 1) + "</td>";
-				html += "<td>" + data[i].ten_san + "</td>";
-				html += "<td><button class='btnDoiten' ma_san='" + data[i].ma_san + "' order='" + (i + 1) + "'>Đổi tên</button></td>";
-				html += "<td><button class='btnXoa' ma_san='" + data[i].ma_san + "' order='" + (i + 1) + "'>Xóa sân</button></td>";
-				html += "</tr>";
-			}
-			html += "</table>";
+			html += "<div class='list-datsan'>"
+			html += '<img class="image-list-sb" src="images/sanbong-icon.png">'
+			html += '<div class="list-sb-item">'+ data[i].ten_san +'</div>'
+			html += "<div class='btn-san'>"
+			html += "<button type='button' class='btn btn-success btnDoiten'  ma_san='" + data[i].ma_san + "' order='" + i + "'>Đổi tên</button>"
+			html += "<button type='button' class='btn btn-danger btnXoa'  ma_san='" + data[i].ma_san + "' order='" + i + "'>Xóa</button></div>"
 
 			html += "</div>"
+		}	
+
+			
 			$("#listsanbong").html(html);
-			$("#viewsanbong").html(html1);
+			$("#viewsanbong").html(html);
 			
 			$("#btnThem").click(function() {
 				var ten_moi = $("#ten_san").val();
@@ -56,10 +46,10 @@ $(document).ready(function() {
 				$(this).attr("disabled", "disabled");
 				var ma_san = $(this).attr("ma_san");
 				var order = $(this).attr("order");
-				var row = $(".mytable tr")[order];
-				var ten = $(row).find("td")[1];
+				var row = $(".list-datsan ")[order];
+				var ten = $(row).find(".list-sb-item");
 				var ten_value = $(ten).text();
-				$(ten).html("<input style='background:yellow;' type='text' value='" + ten_value + "' id='ten-" + order + "'/><br /><span class='thongbao'>" + THONG_BAO + "</span>");
+				$(ten).html("<input class='form-control' type='text' value='" + ten_value + "' id='ten-" + order + "'/><br /><span class='thongbao'>" + THONG_BAO + "</span>");
 				$("#ten-" + order).focus();
 				checkInputs();
 				
@@ -67,7 +57,7 @@ $(document).ready(function() {
 					if (e.keyCode == 27) {	// ESC
 						$(ten).find(".thongbao").remove();
 						$(ten).html(ten_value);
-						$($(".btnDoiten")[order - 1]).removeAttr("disabled");
+						$($(".btnDoiten")[order]).removeAttr("disabled");
 					}
 					if (e.keyCode == 13) {	// ENTER
 						var ten_moi = $("#ten-" + order).val();
@@ -75,7 +65,7 @@ $(document).ready(function() {
 							$(ten).html(ten_moi);
 							suaSan(ma_san, ten_moi);
 							$(ten).find(".thongbao").remove();
-							$($(".btnDoiten")[order - 1]).removeAttr("disabled");
+							$($(".btnDoiten")[order]).removeAttr("disabled");
 						}
 					}
 				});

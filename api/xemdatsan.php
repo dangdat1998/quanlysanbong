@@ -1,15 +1,16 @@
 <?php
 	include("../session.php");
-
+	$cv = $rs['ten'];
+	
 	if (isset($_GET['action'])) {
 		$sql = "";
 		if ($_GET['action']=='xemdatsan') {
 			$day = $_GET['day'];
-			$sql = "SELECT tai_khoan.ten as 'ten_kh', tai_khoan.sdt, san_bong.ten, dat_san.bat_dau, dat_san.ket_thuc, dat_san.id, dat_san.da_thanh_toan, dat_san.don_gia, dat_san.ma_san FROM dat_san, tai_khoan, san_bong WHERE dat_san.ma_kh=tai_khoan.id AND dat_san.ma_san=san_bong.id AND (dat_san.bat_dau BETWEEN '$day 00:00:00' AND '$day 23:59:59') ORDER BY san_bong.ten, dat_san.bat_dau";
+			$sql = "SELECT tai_khoan.ten as 'ten_kh', tai_khoan.sdt, san_bong.ten, dat_san.bat_dau, dat_san.ket_thuc, dat_san.id, dat_san.da_thanh_toan, dat_san.don_gia, dat_san.ma_san, dat_san.id FROM dat_san, tai_khoan, san_bong WHERE dat_san.ma_kh=tai_khoan.id AND dat_san.ma_san=san_bong.id AND (dat_san.bat_dau BETWEEN '$day 00:00:00' AND '$day 23:59:59') ORDER BY dat_san.id DESC"; // san_bong.ten, dat_san.bat_dau AND
 		} else if ($_GET['action']=='xemdoanhthu') {
 			$bat_dau = $_GET['start'];
 			$ket_thuc = $_GET['end'];
-			$sql = "SELECT tai_khoan.ten as 'ten_kh', tai_khoan.sdt, san_bong.ten, dat_san.bat_dau, dat_san.ket_thuc, dat_san.id, dat_san.da_thanh_toan, dat_san.don_gia, dat_san.ma_san FROM dat_san, tai_khoan, san_bong WHERE dat_san.ma_kh=tai_khoan.id AND dat_san.ma_san=san_bong.id AND (dat_san.bat_dau BETWEEN '$bat_dau 00:00:00' AND '$ket_thuc 23:59:59') ORDER BY dat_san.bat_dau";
+			$sql = "SELECT tai_khoan.ten as 'ten_kh', tai_khoan.sdt, san_bong.ten, dat_san.bat_dau, dat_san.ket_thuc, dat_san.id, dat_san.da_thanh_toan, dat_san.don_gia, dat_san.ma_san, dat_san.id FROM dat_san, tai_khoan, san_bong WHERE dat_san.ma_kh=tai_khoan.id AND dat_san.ma_san=san_bong.id AND (dat_san.bat_dau BETWEEN '$bat_dau 00:00:00' AND '$ket_thuc 23:59:59') ORDER BY dat_san.id DESC";
 		}
 
 		$rs = mysqli_query($db, $sql);
@@ -25,7 +26,10 @@
 			$r['da_thanh_toan'] = $row['6'];
 			$r['don_gia'] = $row['7'];
 			$r['ma_san'] = $row['8'];
-			array_push($json_response, $r);
+			$r['id'] = $row['9'];
+			// if($r['ten_kh'] == $cv){
+				array_push($json_response, $r);
+			// }
 		}
 		echo json_encode($json_response);
 	}

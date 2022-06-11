@@ -34,7 +34,7 @@
 }
 
 #theader th{
-    background-image:linear-gradient(to right, #21c92d,#bdffc2,#41fb4f) ;
+    background-image:linear-gradient(to top, #21c92d,#bdffc2,#41fb4f) ;
 }
 
 .TimeTable th:last-child{
@@ -92,7 +92,7 @@
 }
 
 .timeTableToolTip{
-    background: red;
+    background: #2a9b3b;
     border-radius: 8px;
     color: #fff;
     padding: 4px 10px;
@@ -115,7 +115,7 @@
 }
 
 .toolTipDelete{
-    background: red;
+    background: #2a9b3b;
     border: none;
     color: rgba(var(--rgbHeaderFont), 1);
     --cursor: pointer;
@@ -124,6 +124,11 @@
     line-height: 18px;
     vertical-align: top;
     position: relative;
+}
+
+.toolTipDelete:hover{
+    background-color: #2a9b3b;
+    color: red;
 }
 
 .toolTipDelete:active{

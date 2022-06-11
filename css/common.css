@@ -15,7 +15,7 @@ button:hover{background:#ccc;}
     border: inset ;
 }
 
-.table .tbody-listdatsan tr:nth-child(2n + 1) {
+.table .tbody-listdatsan tr:nth-child(2n + 1),.table .tbody-khachhang tr:nth-child(2n + 1) {
     background-color:#cbffc5;
 }
 
@@ -85,3 +85,21 @@ button:hover{background:#ccc;}
     text-align: right;
 }
 
+.drp-buttons .applyBtn{
+    background-color: #0ad219;
+    border: none;
+    padding: 10px!important;
+}
+
+.drp-buttons .cancelBtn{
+    border: none;
+    padding: 10px!important;
+}
+
+.daterangepicker td.active{
+    background-color: #0ad219!important;
+}
+
+.drp-buttons .applyBtn:disabled{
+background-color: #0c5312!important;
+}

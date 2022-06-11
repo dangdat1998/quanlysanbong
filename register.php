@@ -6,7 +6,7 @@
 		die();
 	}
 ?>
-<title>Đăng nhập</title>
+<title>Đăng Ký</title>
 <link rel="shortcut icon" type="image/png" href="favicon.png"/>
 <link rel="stylesheet" type="text/css" href="css/common.css" />
 <link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -21,33 +21,7 @@
 
 </style>
 
-<!-- <div id="registerForm">
-	<table>
-		<tr>
-			<td colspan="2" style='text-align:center;'><h2>QUẢN LÝ SÂN BÓNG ĐÁ</h2></td>
-		</tr>
-		<tr>
-			<td><b>Họ và tên</b></td>
-			<td><input type="text" id="ten" /></td>
-		</tr>
-		<tr>
-			<td><b>Số điện thoại</b></td>
-			<td><input type="number" id="sdt" /></td>
-		</tr>
-		<tr>
-			<td><b>Tên tài khoản</b></td>
-			<td><input type="text" id="name" /></td>
-		</tr>
-		<tr>
-			<td><b>Mật khẩu</b></td>
-			<td><input type="password" id="matkhau" /></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><button id='btnRegister'>Đăng ký</button></td>
-		</tr>
-	</table>
-</div> -->
+
 
 <form id="registerForm">
 <h2>QUẢN LÝ SÂN BÓNG ĐÁ</h2>

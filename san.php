@@ -4,13 +4,23 @@
 <link rel="stylesheet" type="text/css" href="css/index.css" />
 <?php
 	include("session.php");
+	if ($rs['chucvu'] == 0) {
+		header("location:index.php");
+		die();
+	}
 	include("header.php");
 	include("sanbongjs.php")
 ?>
 <div class="container cont">
 	
-	Tên sân: <input type='text' id='ten_san'/> <button id='btnThem'>Thêm sân bóng</button><br />
-	<br />
+	
+	<div class="mb-3 them-san">		
+		<input class="form-control" type="text" id="ten_san" placeholder="Tên sân">
+		<button id='btnThem' type="button" class="btn btn-primary">Thêm sân bóng</button>
+	</div>
 	<div id='listsanbong'></div>
 	
 </div>
+<?php
+		include("footer.php");
+	?>
